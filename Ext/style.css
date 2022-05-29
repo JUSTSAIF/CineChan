@@ -1,0 +1,36 @@
+body {
+    background-color: #393939 !important;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: white !important;
+    width: 250px !important;
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.cur {
+    cursor: pointer;
+}
+
+.ls {
+    float: left;
+}
+
+.rs {
+    float: right;
+}
+
+.bus h5 {
+    margin-top: 0px !important;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+#contactme {
+    color: rgb(197, 197, 197) !important;
+    font-family: 'Courier New', Courier, monospace;
+    margin-bottom: 5px;
+}

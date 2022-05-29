@@ -1,0 +1,35 @@
+{
+    "name": "Cinemana Shabakaty",
+    "icons": {
+        "128": "ico.png"
+    },
+    "version": "1.0.0",
+    "description": "Cinemana Shabakaty",
+    "manifest_version": 3,
+    "author": "Mr28 | Saif",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/JUSTSAIF/CinemanaShabakaty_DiscordStatus"
+    },
+    "action": {
+        "default_popup": "index.html",
+        "default_title": "Cinemana Shabakaty"
+    },
+    "permissions": [
+        "activeTab",
+        "http://cinemana.shabakaty.com/",
+        "https://cinemana.shabakaty.com/",
+        "http://cinemana2.shabakaty.com/",
+        "https://cinemana2.shabakaty.com/"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://cinemana2.shabakaty.com/*"
+            ],
+            "js": [
+                "cinemana2.js"
+            ]
+        }
+    ]
+}
