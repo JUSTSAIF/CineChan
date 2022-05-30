@@ -4,7 +4,11 @@ PAGES = [
         "title": "Home",
     },
     {
-        "path": /\/page\/movie\/index\/en\/*/,
+        "path": /\/page\/home\/*/,
+        "title": "Home",
+    },
+    {
+        "path": /^\/page\/movie\/index\/en$/,
         "title": "Searching ...",
     },
     {
@@ -24,7 +28,7 @@ PAGES = [
         "title": "الرئيسية",
     },
     {
-        "path": /\/page\/movie\/index\/ar\/*/,
+        "path": /^\/page\/movie\/index\/ar$/,
         "title": "بحث ...",
     },
     {
@@ -103,7 +107,9 @@ setInterval(() => {
                 xhr.setRequestHeader("Content-Type", "application/json");
                 xhr.send(JSON.stringify({
                     onlyTitle: true,
-                    title: page.title
+                    title: page.title,
+                    name: null,
+                    epsAndSeason: null
                 }));
             } else {
                 let Name = null
@@ -112,7 +118,7 @@ setInterval(() => {
                     EPS_SEASON = document.querySelector(".blog table tbody tr td[align='center'] h5").innerText.toString().replace(/\s/g, '').replace("|", " , ")
                 } catch { }
                 try {
-                    Name = document.querySelector(".blog table tbody tr td[align='center'] h2").innerText.toString().replace("[ With Translation ] Watch Trailer", "")
+                    Name = document.querySelector(".blog table tbody tr td[align='center'] h2").innerText.toString().replace(" Watch Trailer", "").replace("[ Without Translation ]", "").replace("[ With Translation ]", "")
                 } catch { }
                 let xhr = new XMLHttpRequest();
                 xhr.open("POST", "http://localhost:2828/set", true);
@@ -120,7 +126,8 @@ setInterval(() => {
                 xhr.send(JSON.stringify({
                     onlyTitle: false,
                     name: Name,
-                    epsAndSeason: EPS_SEASON
+                    epsAndSeason: EPS_SEASON,
+                    title: null
                 }));
             }
         }
