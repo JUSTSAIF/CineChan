@@ -4,17 +4,39 @@
   "description": "Discord Rich Presence for Cinemana Shabakaty .",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "dist": "electron-builder"
   },
-  "author": "Saif | Mr28 | @justsaif | @qq_iq",
+  "author": "justsaif.com",
   "devDependencies": {
-    "electron": "^19.0.0"
+    "electron": "^19.0.0",
+    "electron-builder": "^23.0.3"
   },
   "dependencies": {
+    "auto-launch": "^5.0.5",
     "body-parser": "^1.20.0",
     "discord-rich-presence": "0.0.8",
     "discord-rpc-electron": "^4.0.1",
     "electron-workers": "^1.10.3",
     "express": "^4.18.1"
+  },
+  "build": {
+    "productName": "Cinemana",
+    "appId": "com.shabakaty.cinemanadrpbysaif",
+    "win": {
+      "icon": "logo.png",
+      "target": [
+        "nsis",
+        "msi"
+      ]
+    },
+    "directories": {
+      "output": "release"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "runAfterFinish": true
+    }
   }
 }
