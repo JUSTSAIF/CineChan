@@ -13,7 +13,6 @@
     "electron-builder": "^23.0.3"
   },
   "dependencies": {
-    "auto-launch": "^5.0.5",
     "body-parser": "^1.20.0",
     "discord-rich-presence": "0.0.8",
     "discord-rpc-electron": "^4.0.1",

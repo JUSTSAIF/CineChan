@@ -1,6 +1,5 @@
 const { app, Tray, Menu, nativeImage, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
-const AutoLaunch = require('auto-launch');
 let tray
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 const gotTheLock = app.requestSingleInstanceLock()
@@ -87,14 +86,5 @@ if (!gotTheLock) {
     console.log("Restarting...");
     app.relaunch();
     app.exit();
-  });
-
-  let autoLaunch = new AutoLaunch({
-    name: 'cinemana habakaty DRP',
-    path: app.getPath('exe'),
-  });
-
-  autoLaunch.isEnabled().then((isEnabled) => {
-    if (!isEnabled) autoLaunch.enable();
   });
 }
