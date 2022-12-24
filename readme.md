@@ -3,7 +3,4 @@ Download Setup : https://drive.google.com/file/d/1lEYPxP2KnWr9Trw25NhJ6RSMbGh6yc
 
 <div align="center">
   <img src="https://github.com/JUSTSAIF/CinemanaShabakaty_DiscordStatus/blob/main/pic/1.png?raw=true" width="720px" />
-  <br />
-  <br />
-  <img src="https://github.com/JUSTSAIF/CinemanaShabakaty_DiscordStatus/blob/main/pic/2.png?raw=true" width="720px"/>
 </div>
