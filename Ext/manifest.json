@@ -17,24 +17,15 @@
         "activeTab"
     ],
     "host_permissions": [
-        "*://cinemana.shabakaty.com/",
-        "*://cinemana2.shabakaty.com/"
+        "*://cinemana.shabakaty.com/"
     ],
     "content_scripts": [
-        {
-            "matches": [
-                "*://cinemana2.shabakaty.com/*"
-            ],
-            "js": [
-                "cinemana2.js"
-            ]
-        },
         {
             "matches": [
                 "*://cinemana.shabakaty.com/*"
             ],
             "js": [
-                "cinemanaNew.js"
+                "cinemana.js"
             ]
         }
     ]
