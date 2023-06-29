@@ -1,0 +1,134 @@
+body {
+    background-color: #1c1c1c;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+* {
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+.select-box {
+    position: relative;
+    display: inline-block;
+}
+
+.select-box select {
+    padding: 10px 40px 10px 10px;
+    width: 200px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #333333;
+    color: #ffffff;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+}
+
+.select-box::before {
+    content: '\25BC';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #ffffff;
+    pointer-events: none;
+}
+
+.select-box select:hover,
+.select-box select:focus {
+    outline: none;
+}
+
+.select-box select option {
+    background-color: #1c1c1c;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px;
+    height: 40px;
+    width: 55px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #333333;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.progress-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#progress-bar {
+    margin-top: 20px;
+    width: 300px;
+    height: 20px;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    margin-bottom: 10px;
+}
+
+#progress-bar-inner {
+    height: 100%;
+    background-color: #4caf50;
+    width: 0;
+    color: #1c1c1c;
+    display: flex;
+    justify-content: center;
+}
+
+#mv-img {
+    width: 100px;
+    position: absolute;
+    z-index: 1;
+    padding-left: 10px;
+    padding-top: 10px;
+    display: inline;
+}
+
+.ml-130 {
+    margin-left: 130px;
+}
+
+#title {
+    padding-top: 10px;
+    font-weight: 400;
+}
+
+#opt-label {
+    margin-bottom: 3px;
+    font-weight: 400;
+    font-size: small;
+}
+
+#inline {
+    display: inline;
+}
+
+#size {
+    margin-left: 5px;
+    padding-top: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    display: none;
+}
+
+.hide {
+    display: none  !important;
+}

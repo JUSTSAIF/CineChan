@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Downloader</title>
+    <link rel="stylesheet" href="./assets/style.css">
+</head>
+
+<body>
+    <img src=""
+        id="mv-img" />
+    <div class="ml-130">
+        <p id="title">Video Title</p>
+        <p id="opt-label">Resolutions</p>
+        <div class="select-box">
+            <select id="resolution"></select>
+        </div>
+        <div id="tran-option" class="hide">
+            <p id="opt-label">Translations</p>
+            <div class="select-box">
+                <select id="translation"></select>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div id="sb"></div>
+    <div id="inline">
+        <center>
+            <button id="cancel" disabled>
+                <img src="./assets/icons/cancel.png" width="20">
+            </button>
+            <button id="download">
+                <img src="./assets/icons/down.png" width="20">
+            </button>
+        </center>
+        <div class="progress-container">
+            <div id="progress-bar">
+                <div id="progress-bar-inner"></div>
+            </div>
+            <p id="size"></p>
+        </div>
+    </div>
+    <script src="./assets/plugins.js"></script>
+</body>
+
+</html>
