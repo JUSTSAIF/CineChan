@@ -1,17 +1,17 @@
 {
-    "name": "Cinemana Shabakaty",
+    "name": "CineChan",
     "icons": {
         "16": "ico.png",
         "48": "ico.png",
         "128": "ico.png"
     },
-    "version": "1.0.0",
-    "description": "Discord Rich Presence for Cinemana Shabakaty .",
+    "version": "2.0.0",
+    "description": "CineChan is Extension for Cinemana Shabakaty App to do (Discord Rich Presence, Video Dwonloader) .",
     "manifest_version": 3,
     "author": "Mr28 | Saif",
     "action": {
         "default_popup": "index.html",
-        "default_title": "Cinemana Shabakaty"
+        "default_title": "CineChan"
     },
     "permissions": [
         "activeTab"
