@@ -21,6 +21,7 @@ let RPC;
 const gotTheLock = app.requestSingleInstanceLock()
 const jsonParser = bodyParser.json()
 const expressApp = express()
+let lastRequestTime = Date.now();
 let tray
 let DownloadWindows = {};
 let DownloaderFiles = {};
@@ -34,6 +35,7 @@ let LastActivity = {
 app.commandLine.appendSwitch('disable-features', 'OutOfBlinkCors');
 
 const updatePresence = presenceData => RPC.setActivity(presenceData).catch(console.error);
+const clearPresence = () => RPC.clearActivity().catch(console.error);
 const connectToDiscordRPC = () => {
   DiscordRPC.register(clientId);
   RPC = new DiscordRPC.Client({ transport: 'ipc' });
@@ -180,6 +182,8 @@ if (!gotTheLock) {
     expressApp.post('/set', jsonParser, function (request, res) {
       try {
         const data = request.body;
+        lastRequestTime = Date.now();
+
         if (data?.onlyTitle === true) {
           if (data?.title !== LastActivity?.title) {
             LastActivity = data;
@@ -290,3 +294,15 @@ if (!gotTheLock) {
     app.exit();
   });
 }
+
+
+// Remove Discord Status if no req has been received from browser *ext
+setInterval(() => {
+  const currentTime = Date.now();
+  const elapsedTime = currentTime - lastRequestTime;
+
+  if (elapsedTime > 10 * 60 * 1000) {
+    console.log("Clear Discord Status ...");
+    clearPresence()
+  }
+}, 1 * 60 * 1000);
