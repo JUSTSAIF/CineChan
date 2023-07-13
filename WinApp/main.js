@@ -35,7 +35,16 @@ let LastActivity = {
 app.commandLine.appendSwitch('disable-features', 'OutOfBlinkCors');
 
 const updatePresence = presenceData => RPC.setActivity(presenceData).catch(console.error);
-const clearPresence = () => RPC.clearActivity().catch(console.error);
+const clearPresence = () => {
+  RPC.clearActivity().catch(console.error)
+  LastActivity = {
+    name: null,
+    epsAndSeason: null,
+    title: null,
+    onlyTitle: null,
+    startTimestamp: null
+  };
+};
 const connectToDiscordRPC = () => {
   DiscordRPC.register(clientId);
   RPC = new DiscordRPC.Client({ transport: 'ipc' });
@@ -301,8 +310,8 @@ setInterval(() => {
   const currentTime = Date.now();
   const elapsedTime = currentTime - lastRequestTime;
 
-  if (elapsedTime > 10 * 60 * 1000) {
+  if (elapsedTime > 5000) {
     console.log("Clear Discord Status ...");
     clearPresence()
   }
-}, 1 * 60 * 1000);
+}, 5000);
