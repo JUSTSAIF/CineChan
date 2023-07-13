@@ -310,8 +310,8 @@ setInterval(() => {
   const currentTime = Date.now();
   const elapsedTime = currentTime - lastRequestTime;
 
-  if (elapsedTime > 5000) {
+  if (elapsedTime > 10 * 60 * 1000) {
     console.log("Clear Discord Status ...");
     clearPresence()
   }
-}, 5000);
+}, 1 * 60 * 1000);
