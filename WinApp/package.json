@@ -1,6 +1,6 @@
 {
   "name": "cinechan",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "CineChan is App for Cinemana Shabakaty to do (Discord Rich Presence, Video Dwonloader) .",
   "main": "main.js",
   "scripts": {
