@@ -9,12 +9,12 @@ const {
   dialog,
   globalShortcut
 } = require('electron')
-const Downloader = require("nodejs-file-downloader");
 const path = require('path')
 const axios = require('axios');
 const express = require('express')
 const DiscordRPC = require('discord-rpc');
 const bodyParser = require('body-parser');
+const { DownloaderHelper } = require('node-downloader-helper');
 
 const clientId = '980347810123759617'
 let RPC;
@@ -160,7 +160,8 @@ if (!gotTheLock) {
                           tran: tran?.translations,
                           id: data.id,
                           icon: info?.imgMediumThumbObjUrl,
-                          title: info?.en_title
+                          title: info?.en_title,
+                          ep: info?.episodeNummer
                         });
                         _VidownloadWin.show()
                       }
@@ -214,56 +215,73 @@ if (!gotTheLock) {
   // END :: Express App
 
 
+  const DlOptions = fileName => ({
+    resumeOnIncompleteMaxRetry: 15,
+    fileName: fileName,
+    retry: { maxRetries: 15, delay: 5000 },
+    forceResume: true,
+    removeOnStop: true
+  });
+  const Reg = e => `${e}`.replace(/\s/g, "").split("-")
+
+
+  const tranDownloader = async (folderPath, data) => {
+    const TranFileName = `${data?.title}_${Reg(data.tranName)[0]}.${Reg(data.tranName)[1]}`
+
+    const TranDownloader = data.tran != null ? new DownloaderHelper(data?.tran, folderPath, DlOptions(TranFileName)) : null;
+    if (TranDownloader) {
+      TranDownloader.start();
+    }
+
+    return TranDownloader;
+  }
+
+
   ipcMain.on('download-path-dialog', async (event, data) => {
-    const Reg = e => `${e}`.replace(/\s/g, "").split("-")
-    const TranFileName = `${Reg(data.tranName)[0]}_${data.id}.${Reg(data.tranName)[1]}`
-    const VideoFileName = `${Reg(data.vidName)[0]}_${data.id}.${Reg(data.vidName)[1]}`
+    const VideoFileName = `${data?.title}_${Reg(data.vidName)[0]}.${Reg(data.vidName)[1]}`
     const folderPath = GetSavePath();
 
     if (folderPath == null) {
-      DownloadWindows[`${data.id}`].webContents.send('dwn-path-exit');
+      DownloadWindows[`${data.id}`].webContents.send('dwn-path-exit', false);
       return;
     }
 
-    const TranDownloader = new Downloader({
-      url: data?.tran ? data?.tran : "https://fb.com",
-      directory: folderPath,
-      fileName: `\\${TranFileName}`,
-      maxAttempts: 5
-    });
+    const downloadTran = tranDownloader(folderPath, data);
 
-    var isSendedSize = false;
-    const VidDownloader = new Downloader({
-      url: data.vid,
-      directory: folderPath,
-      fileName: `\\${VideoFileName}`,
-      maxAttempts: 5,
-      onProgress: (percentage, chunk, remainingSize) => {
+    const VidDownloader = data.vid != null ? new DownloaderHelper(data.vid, folderPath, DlOptions(VideoFileName)) : null;
+    if (VidDownloader) {
+      var isSendedSize = false;
+      DownloaderFiles[`${data.id}`] = VidDownloader;
+      VidDownloader.on('progress', e => {
         if (!isSendedSize) {
-          DownloadWindows[`${data.id}`].webContents.send('downloadSize', remainingSize);
+          DownloadWindows[`${data.id}`].webContents.send('downloadSize', e.total);
           isSendedSize = true
         };
 
-        DownloadWindows[`${data.id}`].webContents.send('downloadProgress', percentage);
-      },
-    });
+        DownloadWindows[`${data.id}`].webContents.send('downloadProgress', e.progress);
+        DownloadWindows[`${data.id}`].webContents.send('downloadSpeed', e.speed);
+      })
 
-    try {
-      DownloaderFiles[`${data.id}`] = VidDownloader;
-      await VidDownloader.download();
-      if (data.tran) {
-        await TranDownloader.download();
-      }
-    } catch (error) {
-      if (error.code === "ERR_REQUEST_CANCELLED") {
-        console.log("# Video Download Canceled !")
-      }
-      // console.error(error)
+      VidDownloader.on('error', () => DownloadWindows[`${data.id}`].webContents.send('downloadErr'));
+      VidDownloader.on('stateChanged', e => DownloadWindows[`${data.id}`].webContents.send('downloadState', e));
+      VidDownloader.on('stop', () => downloadTran.then(h => h.stop()));
+
+      VidDownloader.start();
     }
   });
 
   ipcMain.on('cancel-download', async (event, id) => {
-    await DownloaderFiles[`${id}`]?.cancel()
+    await DownloaderFiles[`${id}`]?.stop()
+  })
+
+  ipcMain.on('resume-download', async (event, id) => {
+    DownloaderFiles[`${id}`]?.resume()
+    console.log('resume')
+  })
+
+  ipcMain.on('pause-download', async (event, id) => {
+    await DownloaderFiles[`${id}`]?.pause()
+    console.log('pause')
   })
 
   ipcMain.on("restart", function (event, data) {
