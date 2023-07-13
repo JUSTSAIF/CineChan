@@ -9,19 +9,22 @@
 </head>
 
 <body>
-    <img src=""
-        id="mv-img" />
+    <img src="" id="mv-img" />
     <div class="ml-130">
         <p id="title">Video Title</p>
         <p id="opt-label">Resolutions</p>
         <div class="select-box">
             <select id="resolution"></select>
         </div>
-        <div id="tran-option" class="hide">
+        <div id="tran-option" class="hide" style="display: inline;">
             <p id="opt-label">Translations</p>
             <div class="select-box">
                 <select id="translation"></select>
             </div>
+            <!-- Download Subtitles bu -->
+            <!-- <button id="downloadTran">
+                <img src="./assets/icons/down.png" width="20">
+            </button> -->
         </div>
     </div>
     <br />
@@ -29,6 +32,9 @@
     <div id="sb"></div>
     <div id="inline">
         <center>
+            <button id="pause_resumeDownload" disabled>
+                <img src="./assets/icons/pause.png" width="20">
+            </button>
             <button id="cancel" disabled>
                 <img src="./assets/icons/cancel.png" width="20">
             </button>
@@ -40,8 +46,13 @@
             <div id="progress-bar">
                 <div id="progress-bar-inner"></div>
             </div>
-            <p id="size"></p>
         </div>
+    </div>
+    <div id="downloadInfo">
+        <h6 id="speed">0MB</h6>
+        <h6 id="state" class="hide">NONE</h6>
+        <h6 id="err" class="hide">FALSE</h6>
+        <h6 id="size">0MB</h6>
     </div>
     <script src="./assets/plugins.js"></script>
 </body>
