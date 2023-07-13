@@ -70,6 +70,14 @@ button {
     cursor: pointer;
 }
 
+#tran-option  button {
+    margin-top: 0px;
+    padding-top: 5px;
+    position: relative;
+    display: inline-block;
+    height: 38px;
+}
+
 .progress-container {
     display: flex;
     align-items: center;
@@ -123,12 +131,21 @@ button {
 }
 
 #size {
-    margin-left: 5px;
-    padding-top: 10px;
-    font-family: 'Courier New', Courier, monospace;
     display: none;
 }
 
 .hide {
     display: none  !important;
+}
+
+#downloadInfo {
+    position: absolute;
+    left: 6px;
+    bottom: 0;
+}
+
+#downloadInfo h6 {
+    padding: 1px;
+    margin: 0px;
+    margin-bottom: 2px;
 }
