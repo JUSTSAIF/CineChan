@@ -19,7 +19,7 @@
     "discord-rpc-electron": "^4.0.1",
     "electron-workers": "^1.10.3",
     "express": "^4.18.1",
-    "nodejs-file-downloader": "^4.12.1"
+    "node-downloader-helper": "^2.1.7"
   },
   "build": {
     "productName": "CineChan",
