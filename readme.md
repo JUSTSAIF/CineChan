@@ -33,12 +33,12 @@ CineChan aims to provide a seamless and immersive streaming experience, allowing
 To successfully use CineChan and enjoy its features, please follow the steps below:
 
 1. Install the CineChan Desktop App:
-   - 💻 [Download the Windows installer](https://drive.google.com/file/d/1cPNUpg-hjkIh49a_cpE5ksWLlzEoT0kT/view?usp=drive_link) and run it to install the CineChan desktop app.
+   - 💻 [Download the Windows installer](https://drive.google.com/drive/folders/1X_PTdydM1WHyhGFyrpZcFznnG3Kxc7zm?usp=drive_link) and run it to install the CineChan desktop app.
    - 🔧 Make sure to complete the installation process.
 
 2. Install the CineChan Google Chrome Extension:
    - 🌐 Since the CineChan Chrome Extension is not available on the Chrome Web Store, you need to import it as an unpacked extension.
-   - 📥 [Download the CineChan Chrome Extension](https://drive.google.com/file/d/1ErTauIzxdetaAqF4mJB0XRe_K8Pr3_4s/view?usp=drive_link) and extract the contents to a local folder on your computer.
+   - 📥 [Download the CineChan Chrome Extension](https://drive.google.com/drive/folders/1X_PTdydM1WHyhGFyrpZcFznnG3Kxc7zm?usp=drive_link) and extract the contents to a local folder on your computer.
 
    **To Install as an Unpacked Extension:**
    - Open Google Chrome and go to `chrome://extensions` in the address bar.

@@ -9,4 +9,4 @@ function GoTo(id, urls = []) {
 GoTo("cin", ["https://cinemana.shabakaty.com"]);
 GoTo("aboutus", ["https://home.shabakaty.com/home/about-us"]);
 GoTo("contactme", ["https://www.instagram.com/qq_iq", "https://github.com/JUSTSAIF"]);
-GoTo("dwonload-tool", ["https://drive.google.com/file/d/1cPNUpg-hjkIh49a_cpE5ksWLlzEoT0kT/view?usp=drive_link"]);
+GoTo("dwonload-tool", ["https://drive.google.com/drive/folders/1X_PTdydM1WHyhGFyrpZcFznnG3Kxc7zm?usp=drive_link"]);
